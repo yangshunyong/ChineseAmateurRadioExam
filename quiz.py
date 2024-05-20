@@ -32,6 +32,8 @@ from tkinter import messagebox
 from tkinter import font
 from tkinter import messagebox
 
+DIGRAM_LABLE_ENABLE = False
+
 class MODE(Enum):
     STUDY = 0
     QUIZ = 1
@@ -229,6 +231,10 @@ def next_record():
     global wrong_index
 
     update = False
+
+    if DIGRAM_LABLE_ENABLE:
+        diagrm_label.pack()
+
     if (mode == MODE.QUIZ):
         if (quiz_index < (quiz_number - 1)):
             quiz_index += 1
@@ -258,6 +264,9 @@ def prev_record():
     global quiz_index
     global favorite_index
     global wrong_index
+
+    if DIGRAM_LABLE_ENABLE:
+        diagrm_label.pack_forget()
 
     update = False
     if (mode == MODE.QUIZ):
@@ -586,6 +595,11 @@ radio_c.pack(anchor=tk.W)
 
 radio_d = tk.Radiobutton(frame, text="", variable=selected_answer, value=3, justify=tk.LEFT, command=radio_selected, wraplength=radio_wrap_width)
 radio_d.pack(anchor=tk.W)
+
+if DIGRAM_LABLE_ENABLE:
+    digram = tk.PhotoImage(file="quad.gif")
+    diagrm_label = tk.Label(frame, image=digram)
+    diagrm_label.pack()
 
 # Create the answer notification lable
 answer_label = tk.Label(root, text="", wraplength=400, justify=tk.LEFT)
