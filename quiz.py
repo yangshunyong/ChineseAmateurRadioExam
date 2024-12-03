@@ -401,7 +401,7 @@ def option_selected():
 
         else:
             quiz_index = 0
-            quiz_array = [random.randint(0, total_quiz_number - 1) for _ in range(quiz_number)]
+            quiz_array = random.sample(range(total_quiz_number), quiz_number)
             current_index = quiz_array[quiz_index]
             print(quiz_array)
             print("current_index:" + str(current_index))
